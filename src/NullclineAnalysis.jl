@@ -4,7 +4,7 @@ using Simulation73
 using OffsetArrays, StaticArrays
 using StatsBase
 using DataStructures: MutableLinkedList, ListNode, length
-using NamedDims
+using NamedDims, NamedDimsHelpers
 using Contour: contour, lines
 using IterTools
 using ForwardDiff

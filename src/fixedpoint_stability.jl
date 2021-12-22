@@ -36,21 +36,19 @@ function fixedpoint_stability(nullcline_params, fp)
     end
 end
 
-function count_stable_fps(fp_arr::NamedDimsArray, fp_axes, prototype_name::String, fixed_nt::NamedTuple)
-    prototype = get_prototype(prototype_name)
+function count_stable_fps(fp_arr::NamedDimsArray, fp_axes, prototype::Function, fixed_nt::NamedTuple)
     map(enumerate_nda_dims(fp_arr, fp_axes)) do (nt, fps)
         params = get_nullcline_params(prototype(; fixed_nt..., nt...))
         count(fixedpoint_is_stable.(fps, Ref(params)))
     end
 end
 
-function filter_stable_fps(fp_arr::NamedDimsArray{NAMES}, fp_axes::NamedTuple{NAMES}, prototype_name::String, fixed_nt::NamedTuple) where NAMES
+function filter_stable_fps(fp_arr::NamedDimsArray{NAMES}, fp_axes::NamedTuple{NAMES}, prototype::Function, fixed_nt::NamedTuple) where NAMES
     fp_arr = copy(fp_arr)
-    filter_stable_fps!(fp_arr, fp_axes, prototype_name, fixed_nt)
+    filter_stable_fps!(fp_arr, fp_axes, prototype, fixed_nt)
     return fp_arr
 end
-function filter_stable_fps!(fp_arr::NamedDimsArray{NAMES}, fp_axes::NamedTuple{NAMES}, prototype_name::String, fixed_nt::NamedTuple) where NAMES
-    prototype = get_prototype(prototype_name)
+function filter_stable_fps!(fp_arr::NamedDimsArray{NAMES}, fp_axes::NamedTuple{NAMES}, prototype::Function, fixed_nt::NamedTuple) where NAMES
     for (nt, fps) ∈ enumerate_nda_dims(fp_arr, fp_axes)
         params = get_nullcline_params(prototype(; fixed_nt..., nt...))
         filter_stable_fps!(fps, params)
