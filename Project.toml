@@ -1,7 +1,7 @@
 name = "NullclineAnalysis"
 uuid = "b032b04e-6398-4201-8d15-161497fcf6c6"
 authors = ["Graham Smith <grahamas@gmail.com>"]
-version = "0.2.1"
+version = "0.2.2"
 
 [deps]
 Contour = "d38c429a-6771-53c6-b99e-75d170b6e991"
