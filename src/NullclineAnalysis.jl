@@ -21,7 +21,8 @@ export field_functions, phase_space_bounds,
     derive_jacobian_fn, derive_jacobian_fn!
 
 include("fixedpoints.jl")
-export calculate_fixedpoints, calculate_fixedpoints!
+export calculate_fixedpoints, calculate_fixedpoints!,
+    calculate_field, calculate_field!
 
 include("fixedpoint_stability.jl")
 export fixedpoint_is_stable, fixedpoint_stability, 

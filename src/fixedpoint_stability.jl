@@ -23,10 +23,14 @@ function fixedpoint_is_oscillatory(nullcline_params::AbstractNullclineParams, fp
     jacobian_is_oscillatory(jac)
 end
 
+function fixedpoint_jac_val(nullcline_params, fp)
+    jac_fn = derive_jacobian_fn(nullcline_params)
+    jac_fn(fp)
+end
+
 const STABILITY_MARKERS = OffsetArray([:circle, :star, :xcross], -1:1)
 function fixedpoint_stability(nullcline_params, fp)
-    jac_fn = derive_jacobian_fn(nullcline_params)
-    jac = jac_fn(fp)
+    jac = fixedpoint_jac_val(nullcline_params, fp)
     if all(real.(eigvals(jac)) .< 0)
         return -1
     elseif all(real.(eigvals(jac)) .== 0)

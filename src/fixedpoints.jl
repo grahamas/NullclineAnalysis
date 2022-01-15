@@ -9,12 +9,12 @@ function calculate_fixedpoints(
         kwargs...
     )
     field_fns = field_functions(nullcline_params)
-    calculate_fixedpoints(nullcline_params, field_functions, axis_length, bounds; kwargs...)
+    calculate_fixedpoints(nullcline_params, field_fns, axis_length, bounds; kwargs...)
 end
 
 function calculate_fixedpoints(
         nullcline_params::AbstractNullclineParams{T},
-        field_functions::NTuple{N,Function},
+        field_fns::NTuple{N,Function},
         axis_length::Integer,
         axes_bounds::NTuple{N,<:Tuple}
         ;
@@ -24,7 +24,7 @@ function calculate_fixedpoints(
     field_arr = Array{T,N}(undef, length.(field_axes)...)
 
     calculate_fixedpoints!(
-        field_arr, field_axes, field_functions, 
+        field_arr, field_axes, field_fns, 
         nullcline_params, axes_bounds
         ; 
         kwargs...

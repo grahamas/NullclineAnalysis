@@ -1,4 +1,8 @@
 
+function get_nullcline_params(model)
+    error("undefined")
+end
+
 function field_functions(params)
     error("undefined")
 end
