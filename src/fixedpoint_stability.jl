@@ -59,7 +59,7 @@ function filter_stable_fps!(fp_arr::NamedDimsArray{NAMES}, fp_axes::NamedTuple{N
     end
 end
 function filter_stable_fps(fps::AbstractVector, params::AbstractNullclineParams)
-    filter(fp -> fixedpoint_is_stable(params, fp), fps)
+    filter(fp -> fixedpoint_is_stable(fp, params), fps)
 end
 function filter_stable_fps!(fps::AbstractVector, params::AbstractNullclineParams)
     keepat!(fps, fixedpoint_is_stable.(fp, Ref(params)))
